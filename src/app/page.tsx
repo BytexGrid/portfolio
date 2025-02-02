@@ -57,11 +57,12 @@ export default function Home() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <button
-                className="px-6 py-2 border border-blue-500 rounded-full hover:bg-blue-500/10 transition-colors"
+              <Link
+                href="/contact"
+                className="px-6 py-2 border border-blue-500 rounded-full hover:bg-blue-500/10 transition-colors inline-block"
               >
                 Contact Me
-              </button>
+              </Link>
             </motion.div>
           </div>
         </motion.div>
