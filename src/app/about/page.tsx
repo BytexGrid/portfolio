@@ -14,12 +14,12 @@ const skills = {
 
 const timeline = [
   {
-    year: '2024',
+    year: '2025',
     title: 'Open Source Contributions',
     description: 'Actively contributing to various open source projects and creating developer tools.',
   },
   {
-    year: '2023',
+    year: '2024',
     title: 'NeatShift Development',
     description: 'Created NeatShift, a modern Windows file organization tool with symbolic link support.',
   },
