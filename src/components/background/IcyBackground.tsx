@@ -1,8 +1,30 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 export default function IcyBackground() {
+  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 }); // Default values
+
+  useEffect(() => {
+    // Update dimensions on mount
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    // Update dimensions on resize
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <motion.div
@@ -23,7 +45,7 @@ export default function IcyBackground() {
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
       {/* Snowflakes */}
       {[...Array(50)].map((_, i) => {
-        const startX = Math.random() * window.innerWidth;
+        const startX = Math.random() * dimensions.width;
         const startY = -20; // Start above the viewport
         const size = Math.random() * 8 + 4; // Random size between 4-12px (increased)
         const duration = Math.random() * 10 + 10; // Random duration between 10-20s
@@ -41,7 +63,7 @@ export default function IcyBackground() {
             }}
             animate={{
               x: [startX - 100, startX + 100, startX - 100, startX], // Increased movement range
-              y: [startY, window.innerHeight + 20],
+              y: [startY, dimensions.height + 20],
               scale: [0, 1, 0.5, 1],
               rotate: 360
             }}
