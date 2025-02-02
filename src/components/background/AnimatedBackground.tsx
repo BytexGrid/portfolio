@@ -1,8 +1,30 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 export default function AnimatedBackground() {
+  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 }); // Default values
+
+  useEffect(() => {
+    // Update dimensions on mount
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    // Update dimensions on resize
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <motion.div
@@ -26,12 +48,12 @@ export default function AnimatedBackground() {
           key={i}
           className="absolute h-1 w-1 rounded-full bg-blue-500/30"
           initial={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * dimensions.width,
+            y: Math.random() * dimensions.height,
           }}
           animate={{
-            x: Math.random() * window.innerWidth,
-            y: Math.random() * window.innerHeight,
+            x: Math.random() * dimensions.width,
+            y: Math.random() * dimensions.height,
             scale: [1, 1.5, 1],
             opacity: [0.3, 0.6, 0.3],
           }}

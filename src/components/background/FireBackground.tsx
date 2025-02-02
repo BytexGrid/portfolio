@@ -1,8 +1,30 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 export default function FireBackground() {
+  const [dimensions, setDimensions] = useState({ width: 1000, height: 1000 }); // Default values
+
+  useEffect(() => {
+    // Update dimensions on mount
+    setDimensions({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    // Update dimensions on resize
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <motion.div
@@ -22,8 +44,8 @@ export default function FireBackground() {
       />
       <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-10" />
       {[...Array(50)].map((_, i) => {
-        const startX = Math.random() * window.innerWidth;
-        const startY = Math.random() * window.innerHeight + 100;
+        const startX = Math.random() * dimensions.width;
+        const startY = Math.random() * dimensions.height + 100;
         
         return (
           <motion.div
