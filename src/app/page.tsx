@@ -39,7 +39,7 @@ export default function Home() {
             BytexGrid
           </h1>
           <p className="text-xl text-gray-300 max-w-2xl">
-            Open Source Developer | Creating modern solutions for tomorrow's challenges
+            Open Source Developer | Creating modern solutions for tomorrow&apos;s challenges
           </p>
           <div className="flex gap-4 justify-center">
             <motion.div

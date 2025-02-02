@@ -35,7 +35,10 @@ export default function ProjectsPage() {
   useEffect(() => {
     getRepositories()
       .then(setRepositories)
-      .catch((err) => setError('Failed to load repositories. Please try again later.'));
+      .catch((err) => {
+        console.error('Error fetching repositories:', err);
+        setError('Failed to load repositories. Please try again later.');
+      });
   }, []);
 
   const ProjectSection = ({ title, description, repos, startIndex = 0 }: { 

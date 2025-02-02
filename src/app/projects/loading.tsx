@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import FireBackground from '@/components/background/FireBackground';
 
 export default function ProjectsLoading() {
@@ -23,19 +22,21 @@ export default function ProjectsLoading() {
             <div className="h-4 w-2/3 mx-auto bg-amber-100/10 rounded animate-pulse" />
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-12">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="bg-black/40 backdrop-blur-sm border border-amber-500/10 rounded-lg p-6"
-              >
-                <div className="h-6 w-2/3 bg-amber-400/10 rounded mb-4 animate-pulse" />
-                <div className="space-y-2">
-                  <div className="h-4 w-full bg-amber-100/10 rounded animate-pulse" />
-                  <div className="h-4 w-3/4 bg-amber-100/10 rounded animate-pulse" />
+          <div className="animate-pulse space-y-8">
+            <div className="h-12 w-48 bg-gray-700/50 rounded-lg" />
+            <div className="h-6 w-96 bg-gray-700/50 rounded-lg" />
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <div key={i} className="bg-gray-800/50 rounded-lg p-6 space-y-4">
+                  <div className="h-6 w-3/4 bg-gray-700/50 rounded" />
+                  <div className="h-20 bg-gray-700/50 rounded" />
+                  <div className="flex gap-2">
+                    <div className="h-6 w-20 bg-gray-700/50 rounded-full" />
+                    <div className="h-6 w-20 bg-gray-700/50 rounded-full" />
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
